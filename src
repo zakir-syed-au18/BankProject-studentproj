@@ -1,0 +1,134 @@
+package Bank;
+
+import java.util.Scanner;
+
+public class Banking {
+	
+	public static void main(String[] args) {
+		
+	BankAccount bnk1=new BankAccount("Dinda","SBI0952947");
+	 bnk1.showMenu();
+		
+		
+	}
+
+}
+class  BankAccount
+{
+	int balance=100000;
+	int  perviousTransaction;
+	String customername;
+	String customerId;
+	
+	BankAccount(String name, String id)
+	{
+		customername=name;
+		customerId=id;
+	}
+
+   void deposit(int amount)
+   {
+	   if(amount>0)
+	   {
+		  balance+=amount;
+		  perviousTransaction=amount;
+	   }
+	   else
+	   {
+		   System.out.println("Boss enter correct amount:"+balance);
+	   }
+
+   }
+   void withdraw(int amount)
+   {
+	   if(amount>0)
+	   {
+		   balance-=amount;
+		   perviousTransaction=-amount;
+		  
+	   }
+	   else
+	   {
+		   System.out.println("Boss enter correct amount");
+	   }
+   }
+
+    void perviousTransaction()
+    {
+    	if(perviousTransaction>0)
+    	{
+    		System.out.println("Deposited:" +perviousTransaction);
+    	}
+    	else if(perviousTransaction<0)
+    	{
+    		System.out.println("Withdrawn:" +Math.abs(perviousTransaction));
+    	}
+    	else
+    	{
+    		System.out.println("No Transaction occured");
+    	}
+    }
+    	
+    	void showMenu()
+    	{
+    		char option='\0';
+    		Scanner sc=new Scanner(System.in);
+    		System.out.println("welcome :"+customername);
+    		System.out.println("Your Id is :"+customerId);
+    		System.out.println("----------------------------");
+    		System.out.println("A.check deposit");
+    		System.out.println("B.Deposit");
+    		System.out.println("C.withDrawn");
+    		System.out.println("D.perviousTransaction");
+    		System.out.println("E.Exit");
+    		System.out.println("\n");
+    		
+    		do
+    		{
+    			System.out.println("----------------------------");
+    			System.out.println("Enter an option");
+    			System.out.println("----------------------------");
+    			option =sc.next().charAt(0);
+    		
+    		switch(option)
+    		{
+    		    
+    		case 'A':System.out.println("------------------------------");
+    		          System.out.println("Balance ="+balance);
+    		          System.out.println("------------------------------");
+    		      break;
+    		case 'B': System.out.println("----------------");   
+    		          System.out.println("Enter an mount to  deposit");
+    		          System.out.println("--------------------");
+    		          int amount=sc.nextInt();
+    		          deposit(amount);
+    		          System.out.println("\n");
+    		          break;
+    		case 'C': System.out.println("-------------------");
+    		          System.out.println("Enter amount to withdraw");
+    		          System.out.println("-------------------");
+    		          int amount2=sc.nextInt();
+    		          withdraw(amount2);
+    		          System.out.println("\n");
+    		          break;
+    		case 'D':System.out.println("----------------------");
+    		          perviousTransaction();
+    		          System.out.println("----------------------");
+    		          System.out.println("\n");
+    		          break;
+    		case 'E': System.out.println(":)");
+    		           break;
+    		           
+    		           
+    		    default:System.out.println("Invalid Option !.please enter again");
+    		             break;         
+    	    }
+ 
+    		
+    		
+    	}while(option!= 'E');
+    		System.out.println("Thank you for using our sevice");
+    	
+}
+
+}
